@@ -79,7 +79,6 @@ const update = (req, res, next) => {
         last_name: req.body.last_name,
         cin: req.body.cin,
         email: req.body.email,
-        password: req.body.password,
         phone_number: req.body.phone_number,
         role: req.body.role,
         image: req.body.image
@@ -130,7 +129,7 @@ const login = (req, res, next) => {
                     })
                 }
                 if(result){
-                    let token = jwt.sign({name: user.name}, 'AzQ,PI)0(', {expiresIn: '1h'})
+                    let token = jwt.sign({name: user.name}, 'secret', {expiresIn: '1h'})
                     res.json({
                         message: 'Login successfull',
                         token
@@ -147,9 +146,41 @@ const login = (req, res, next) => {
             })
         }
     })
+    
 }
 
 
+const changePassword = (req, res, next) => {
+
+    bcrypt.hash(req.body.password, 10, function(err, hashedPass) {
+        if(err) {
+            res.json({
+                error : err
+            })
+        }
+
+        let userID = req.body.userID
+        let updatedData = {
+            password: hashedPass
+        }
+    
+        User.findByIdAndUpdate(userID, {$set: updatedData})
+        .then(response => {
+            res.json({
+                message: 'password updated'
+            })
+        })
+        .catch(error => {
+            res.json({
+                message: 'error'
+            })
+        })
+
+    })
+    
+    
+}
+
 module.exports = {
-    index,show,register,update,destroy,login
+    index,show,register,update,destroy,login,changePassword
 }
