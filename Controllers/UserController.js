@@ -73,7 +73,7 @@ const register = (req, res, next) => {
 }
 
 const update = (req, res, next) => {
-    let userID = req.body.userID
+    let userID = req.body.cin
     let updatedData = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -84,7 +84,7 @@ const update = (req, res, next) => {
         image: req.body.image
     }
 
-    User.findByIdAndUpdate(userID, {$set: updatedData})
+    User.findOneAndUpdate(userID, {$set: updatedData})
     .then(() => {
         res.json({
             message: 'user updated'
@@ -100,8 +100,8 @@ const update = (req, res, next) => {
 
 
 const destroy = (req, res, next) => {
-    let userID = req.body.userID
-    User.findByIdAndRemove(userID)
+    let userID = req.body.cin
+    User.findOneAndRemove(userID)
     .then(() => {
         res.json({
             message: 'user deleted'
@@ -159,12 +159,13 @@ const changePassword = (req, res, next) => {
             })
         }
 
-        let userID = req.body.userID
+        let userID = req.body.cin
         let updatedData = {
             password: hashedPass
         }
-    
-        User.findByIdAndUpdate(userID, {$set: updatedData})
+        var username = req.body.username
+        
+        User.findOneAndUpdate({$or: [{email:username},{phone_number:username}]}, {$set: updatedData})
         .then(response => {
             res.json({
                 message: 'password updated'
