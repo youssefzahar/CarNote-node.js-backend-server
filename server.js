@@ -22,7 +22,7 @@ const app = express()
 app.use(morgan('dev'))
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
-
+app.use('/uploads',express.static('uploads'))
 const Port = process.env.Port || 3000
 
 app.listen(Port, () =>{

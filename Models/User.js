@@ -10,10 +10,14 @@ const userSchema = new Schema({
         type: String
     },
     cin: {
-        type: Number
+        type: Number,
+        required:true,
+        unique: true
     },
     email: {
-        type: String
+        type: String,
+        required:true,
+        unique: true
     },
     password: {
         type: String
@@ -25,7 +29,15 @@ const userSchema = new Schema({
         type: String
     },
     phone_number: {
+        type: String,
+        required:true,
+        unique: true
+    },
+    emailToken:{
         type: String
+    },
+    isVerified:{
+        type: Boolean
     },
 }, {timestamps: true} )
 
