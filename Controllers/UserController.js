@@ -71,6 +71,18 @@ const register = (req, res, next) => {
                 message: 'error'
             })
         })
+        let transporter = nodemailer.createTransport({
+            host : 'smtp.gmail.com',
+            port : 465,
+            secure : true,
+            auth:{
+                user: 'youssef.zahar@esprit.tn',
+                pass: '9400613889'
+            },
+            tls:{
+                rejectUnauthorized : false
+            }
+        })
         var mailOptions = {
             from: ' "Verify your email" <youssef.zahar@esprit.tn>',
             to: user.email,
@@ -79,11 +91,23 @@ const register = (req, res, next) => {
             <h4> Please verify your mail to continue... </h4>
             <a href="http://${req.headers.host}/user/verify-email?token=${user.emailToken}">Verify Your Email</a>`
         }
+     
+        
 
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error)
+            }else{
+                console.log("verification")
+            }
+        })
 
 
     })
 }
+
+
+
 
 const update = (req, res, next) => {
     let userID = req.body.cin
@@ -196,47 +220,14 @@ const changePassword = (req, res, next) => {
 }
 
 
-var transporter = nodemailer.createTestAccount({
-    service : 'gmail',
-    auth:{
-        user: 'youssef.zahar@esprit.tn',
-        pass: '9400613889'
-    },
-    tls:{
-        rejectUnauthorized : false
-    }
-})
 
 
-const sendEmail = async (email, subject, text,code) => {
-    try {
-      const transporter = nodemailer.createTransport({
-        pool: true,
-        host: "smtp.gmail.com",
-        port: 587,
-        auth: {
-          user: "youssef.zahar@esprit.tn", // generated ethereal user
-          pass: "9400613889", // generated ethereal password
-        },
-      });
-  
-      await transporter.sendMail({
-        from:  "youssef.zahar@esprit.tn",
-        to: email,
-        subject: subject,
-        text: "this is your code for reset password    "  +code,
-      });
-      console.log("email sent sucessfully");
-    } catch (error) {
-      console.log("email not sent");
-      console.log(error);
-    }
-  };
+
 
 
 
 
 
 module.exports = {
-    index,show,register,update,destroy,login,changePassword,sendEmail
+    index,show,register,update,destroy,login,changePassword
 }

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const User = require('../Models/User')
 
 const authenticate = (req, res, next) => {
     try {
@@ -15,4 +16,19 @@ const authenticate = (req, res, next) => {
     }
 }
 
-module.exports = authenticate
+const verifyEmail = async(req,res,next)=>{
+    try{
+        const user = await User.findOne({ email: req.body.email })
+        if(user.isVerified){
+            next()
+        }
+        else{
+            console.log("Please check your email to verify your account")
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+module.exports = { authenticate, verifyEmail }
