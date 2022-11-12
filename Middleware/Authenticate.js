@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
 const User = require('../Models/User')
+const passport = require('passport')
+const GoogleStrategy = require('passport-google-oauth2').Strategy
 
 const authenticate = (req, res, next) => {
     try {
@@ -16,19 +18,25 @@ const authenticate = (req, res, next) => {
     }
 }
 
-const verifyEmail = async(req,res,next)=>{
-    try{
-        const user = await User.findOne({ email: req.body.email })
-        if(user.isVerified){
-            next()
-        }
-        else{
-            console.log("Please check your email to verify your account")
-        }
-    }
-    catch(err){
-        console.log(err)
-    }
-}
+const GOOGLE_CLIENT_ID = '110400442623-phn1epmn04absp9uvffoppevu19ug0s2.apps.googleusercontent.com'
+const GOOGLE_CLIENT_SECRET ='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'
 
-module.exports = { authenticate, verifyEmail }
+passport.use(new GoogleStrategy({
+    clientID:     GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+
+passport.serializeUser(function(user, done){
+    done(null,user);
+})
+
+
+module.exports = { authenticate }

@@ -12,15 +12,14 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer ({
-    dest:'upload',
-    fileFilter(req, file, callback){
+    //dest:'upload',
+    storage: storage,
+    fileFilter: function(req, file, callback){
         if(
-            file.mimetype == "image/png" || file.mimetype == "image/jpg"
+            file.mimetype == "image/png" || 
+            file.mimetype == "image/jpg"
         ){
             callback(null, true)
-            async(req,res) =>{
-                res.send()
-            }
         } else{
             console.log('only png and jpg are supported')
             callback(null, false)
@@ -28,16 +27,7 @@ var upload = multer ({
     },
     limits: {
         fileSize: 1024 * 1024 * 2
-    }/*
-    dest:'upload',
-    limits:{
-        fileSize:1000000
-    },
-    fileFilter(req, file, cb){
-        if(file.originalname.endsWith('.jpg'))
-        return cb(new Error('file format is incorrect'));
-        cb(undefined,true)
-    }*/
+    }
 })
 
 module.exports = upload
