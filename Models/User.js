@@ -38,10 +38,6 @@ const userSchema = new Schema({
     isVerified:{
         type: Boolean
     },
-    code:{
-        type: String,
-        default: null
-    },
 }, {timestamps: true} )
 
 const User = mongoose.model('User', userSchema)

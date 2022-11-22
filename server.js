@@ -3,10 +3,10 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyparser = require('body-parser')
 const UserRoute = require('./Routes/User')
-const CarRoute = require('./Routes/Car')
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require("swagger-ui-express")
 const dotenv = require('dotenv')
+const CarRoute = require('./Routes/Car')
 
 mongoose.connect('mongodb://localhost:27017/CarNote', {useNewUrlParser: true, useUnifiedTopology: true})
 
@@ -51,7 +51,7 @@ const options = {
   
       servers: [
         {
-          url: "http://localhost:3000",
+          url: "http://localhost:4001",
           description: "My API Documentation",
         },
       ],
@@ -61,6 +61,8 @@ const options = {
   
   const specs = swaggerJSDoc(options);
 
- // app.use('/api/user', swaggerUi.serve, swaggerUi.setup(specs))
+//  app.use('/api/user', swaggerUi.serve, swaggerUi.setup(specs))
   app.use('/api/user', UserRoute)
-  app.use('/api/Car', CarRoute)
+  app.use('/api/car', CarRoute)
+
+
