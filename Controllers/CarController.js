@@ -1,3 +1,4 @@
+const { default: file } = require('@babel/core/lib/transformation/file/file')
 const Car = require('../Models/Car')
 
 
@@ -172,6 +173,19 @@ const add = (req, res, next) => {
             //attribute: req.body.attribute,
 
         })
+
+       /* if(req.file){
+            car.image = req.file.path
+        }*/
+
+        if(req.files){
+            let path = ''
+            req.files.forEach(function(files, index, arr) {
+                path = path + files.path + ','
+            })
+            path = path.substring(0, path.lastIndexOf(","))
+            car.image = path
+        }
     
         car.save()
         .then(response => {

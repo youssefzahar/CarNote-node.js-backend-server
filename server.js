@@ -7,6 +7,8 @@ const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require("swagger-ui-express")
 const dotenv = require('dotenv')
 const CarRoute = require('./Routes/Car')
+const ProductRoute = require('./Routes/Product')
+
 
 mongoose.connect('mongodb://localhost:27017/CarNote', {useNewUrlParser: true, useUnifiedTopology: true})
 
@@ -61,8 +63,10 @@ const options = {
   
   const specs = swaggerJSDoc(options);
 
-  app.use('/swagger/api/user', swaggerUi.serve, swaggerUi.setup(specs))
+  app.use('/swagger/api', swaggerUi.serve, swaggerUi.setup(specs))
   app.use('/api/user', UserRoute)
   app.use('/api/car', CarRoute)
+  app.use('/api/product', ProductRoute)
+
 
 
