@@ -159,15 +159,15 @@ const add = (req, res, next) => {
 
         let car = new Car({
             modele: req.body.modele,
-            immatricule: req.body.immatricule,
             type: req.body.type,
             marque: req.body.marque,
+            immatricule: req.body.immatricule,
             puissance: req.body.puissance,
             carburant: req.body.carburant,
             description: req.body.description,
-            owned_by: req.body.owned_by,
+            //owned_by: req.body.owned_by,
             age: req.body.age,
-            image: req.body.image,
+            //image: req.body.image,
             attribute: "private",
             //attribute: req.body.attribute,
 

@@ -51,7 +51,7 @@ const options = {
   
       servers: [
         {
-          url: "http://localhost:4001",
+          url: "http://localhost:3000",
           description: "My API Documentation",
         },
       ],
@@ -61,7 +61,7 @@ const options = {
   
   const specs = swaggerJSDoc(options);
 
-//  app.use('/api/user', swaggerUi.serve, swaggerUi.setup(specs))
+  app.use('/swagger/api/user', swaggerUi.serve, swaggerUi.setup(specs))
   app.use('/api/user', UserRoute)
   app.use('/api/car', CarRoute)
 

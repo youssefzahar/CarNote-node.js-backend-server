@@ -12,7 +12,8 @@ const userSchema = new Schema({
     cin: {
         type: Number,
         required:true,
-        unique: true
+        unique: true,
+        minlenght : 8
     },
     email: {
         type: String,
@@ -31,6 +32,7 @@ const userSchema = new Schema({
     phone_number: {
         type: String,
         required:true,
+        minlenght : 8
     },
     emailToken:{
         type: String

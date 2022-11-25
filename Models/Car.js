@@ -32,7 +32,7 @@ const carSchema = new Schema({
     },
     owned_by: {
         type: String,
-        required:true,
+        default:"youssef.zahar@esprit.tn"
     },
     attribute: {
         type: String,

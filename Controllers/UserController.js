@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const nodemailer = require('nodemailer')
 const hbs = require('nodemailer-express-handlebars')
+//const {findOne} = require('../Models/User')
 
 const index = (req,res,next) => {
     User.find()
@@ -21,8 +22,8 @@ const index = (req,res,next) => {
 }
 
 const show = (req, res, next) =>{
-    let userID = req.body.cin
-    User.findOne(userID)
+    let userID = req.body.userID
+    User.findById(userID)
     .then(response => {
         res.json({
             response
@@ -524,19 +525,16 @@ const verifyAccount = (req, res, next) => {
 
 
 const update = (req, res, next) => {
-    let userID = req.body.cin
+    let userID = req.body.userID
     console.log(userID)
     let updatedData = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        cin: req.body.cin,
-        email: req.body.email,
         phone_number: req.body.phone_number,
-        role: req.body.role,
         //image: req.body.image
     }
 
-    User.findOneAndUpdate(userID, {$set: updatedData})
+    User.findByIdAndUpdate(userID, {$set: updatedData})
     .then(() => {
         res.json({
             message: 'user updated'
@@ -552,8 +550,8 @@ const update = (req, res, next) => {
 
 
 const destroy = (req, res, next) => {
-    let userID = req.body.cin
-    User.findOneAndRemove(userID)
+    let userID = req.body.userID
+    User.findByIdAndRemove(userID)
     .then(() => {
         res.json({
             message: 'user deleted'
@@ -582,10 +580,11 @@ const login = (req, res, next) => {
                     })
                 }
                 if(result){
-                    let token = jwt.sign({email: user.email},'secretValue', {expiresIn: '1H'})
+                    let token = jwt.sign({_id: user._id},'secret', {expiresIn: '1H'})
                     res.json({
                         message: 'Login successfull',
-                        token
+                        token,
+                        user
                     })
                 }else{
                     res.json({
@@ -617,7 +616,7 @@ const changePassword = (req, res, next) => {
             })
         }
 
-        let userID = req.body.cin
+        let userID = req.body.email
         let updatedData = {
             password: hashedPass
         }

@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken')
 const User = require('../Models/User')
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth2').Strategy
+//const passport = require('passport')
+//const GoogleStrategy = require('passport-google-oauth2').Strategy
 
 const authenticate = (req, res, next) => {
     try {
-        const token = req.headers.authorization.split('')[1]
+        const token = req.headers.authorization.replace("Bearer","").trim();
         const decode = jwt.verify(token, 'secret')
-
-        req.user = decode
+        const user = User.findOne({_id: decode._id})
+        req.user = user;
         next()
     }
     catch(error){
@@ -17,7 +17,7 @@ const authenticate = (req, res, next) => {
         })
     }
 }
-
+/*
 const GOOGLE_CLIENT_ID = '110400442623-phn1epmn04absp9uvffoppevu19ug0s2.apps.googleusercontent.com'
 const GOOGLE_CLIENT_SECRET ='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'
 
@@ -37,6 +37,6 @@ passport.use(new GoogleStrategy({
 passport.serializeUser(function(user, done){
     done(null,user);
 })
+*/
 
-
-module.exports = { authenticate }
+module.exports =  authenticate 
