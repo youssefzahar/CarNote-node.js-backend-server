@@ -79,8 +79,8 @@ const register = (req, res, next) => {
             port : 465,
             secure : true,
             auth:{
-                user: 'youssef.zahar@esprit.tn',
-                pass: '9400613889'
+                user: 'mycarnote1@gmail.com',
+                pass: '12345678car'
             },
             tls:{
                 rejectUnauthorized : false
@@ -89,7 +89,7 @@ const register = (req, res, next) => {
         
         
         var mailOptions = {
-            from: ' "Verify your email" <youssef.zahar@esprit.tn>',
+            from: ' "Verify your email" <mycarnote1@gmail.com>',
             to: user.email,
             subject: 'Verify you Mail',
             html: `<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
@@ -425,7 +425,7 @@ const register = (req, res, next) => {
                   <td style="overflow-wrap:break-word;word-break:break-word;padding:23px 40px 10px;font-family:'Open Sans',sans-serif;" align="left">
                     
               <div style="color: #b8b8b8; line-height: 140%; text-align: center; word-wrap: break-word;">
-                <p style="font-size: 14px; line-height: 140%;">Call us: 56 330 407<br>EMAIL: youssef.zahar@esprit.tn&nbsp;</p>
+                <p style="font-size: 14px; line-height: 140%;">Call us: 56 330 407<br>EMAIL: mycarnote1@gmail.com&nbsp;</p>
               </div>
             
                   </td>
@@ -679,8 +679,8 @@ const forgotPassword = (req, res, next) => {
     port : 465,
     secure : true,
     auth:{
-        user: 'youssef.zahar@esprit.tn',
-        pass: '9400613889'
+        user: 'mycarnote1@gmail.com',
+        pass: '12345678car'
     },
     tls:{
         rejectUnauthorized : false
@@ -689,7 +689,7 @@ const forgotPassword = (req, res, next) => {
 
 
 var mailOptions = {
-    from: ' "Reset password" <youssef.zahar@esprit.tn>',
+    from: ' "Reset password" <mycarnote1@gmail.com>',
     to: username,
     subject: 'Here is your new reset password',
     html: `<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
@@ -970,7 +970,7 @@ var mailOptions = {
             
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 16px; line-height: 22.4px; color: #ecf0f1;">Contact</span></p>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px; color: #ecf0f1;">56 330 407 | youssef.zahar@esprit.tn</span></p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px; color: #ecf0f1;">56 330 407 | mycarnote1@gmail.com</span></p>
       </div>
     
           </td>

@@ -137,21 +137,18 @@ const makePublic = (req, res, next) => {
 }
 
 const showMarketplace = (req,res,next) => {
-    if(Car.attribute == "public"){
-    Car.find()
-    .then(response => {
-        res.json({
-            response
-        })
+    Car.find({attribute : 'public'} , (error, data) => {
+        if(error){
+            console.log(error)
+        }
+        else {
+            response => {
+                res.json({
+                    data
+                })
+            }
+        }
     })
-    .catch(error => {
-        res.json({
-            message: 'An error occured'
-        })
-    })
-} else {
-    mesaage: 'no car for sale'
-}
 }
 
 
@@ -177,7 +174,7 @@ const add = (req, res, next) => {
        /* if(req.file){
             car.image = req.file.path
         }*/
-/*
+
         if(req.files){
             let path = ''
             req.files.forEach(function(files, index, arr) {
@@ -185,7 +182,7 @@ const add = (req, res, next) => {
             })
             path = path.substring(0, path.lastIndexOf(","))
             car.image = path
-        }*/
+        }
     
         car.save()
         .then(response => {
