@@ -8,6 +8,7 @@ const swaggerUi = require("swagger-ui-express")
 const dotenv = require('dotenv')
 const CarRoute = require('./Routes/Car')
 const ProductRoute = require('./Routes/Product')
+const Product = require('./Models/Product')
 
 
 mongoose.connect('mongodb://localhost:27017/CarNote', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -34,6 +35,9 @@ app.listen(Port, () =>{
     console.log(`Server is running on port ${Port}`)
 })
 
+app.get('/api/products', (req, res) => {
+  res.json(Product)
+})
 
 
 const options = {

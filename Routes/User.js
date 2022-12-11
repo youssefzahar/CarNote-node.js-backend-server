@@ -103,7 +103,7 @@ const { application } = require('express')
 
 
 
- router.get('/show',  UserController.show)
+ router.get('/show', authenticate, UserController.show)
  
  
  

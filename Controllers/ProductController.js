@@ -1,11 +1,14 @@
+const { response } = require('express')
 const Product = require('../Models/Product')
 
 
-const index = (req,res,next) => {
+const index = (req,res) => {
     Product.find()
     .then(response => {
         res.json({
-            response
+            error: false,
+            message: "works",
+            data : response
         })
     })
     .catch(error => {
@@ -18,7 +21,7 @@ const index = (req,res,next) => {
 
 
 const show = (req, res, next) =>{
-    let productID = req.body.productID
+    let productID = req.params.productID
     console.log(productID)
     Product.findById(productID)
     .then(response => {
@@ -35,10 +38,13 @@ const show = (req, res, next) =>{
 
 
 const add = (req, res, next) => {
+    const id = Math.floor(Date.now()/1000);
+    console.log(id)
         let product = new Product({
             title: req.body.title,
             stock: req.body.stock,
             prix: req.body.prix,
+            id: id,
             description: req.body.description,
         })
     
@@ -81,10 +87,12 @@ const update = (req, res, next) => {
 
     }
 
-    Product.findByIdAndUpdate(productID, {$set: updatedData})
+    Product.findOneAndUpdate(productID, {$set: updatedData})
     .then(() => {
         res.json({
-            message: 'product updated'
+            error: false,
+            message: 'product updated',
+            data : []
         })
     })
     .catch(error => {
@@ -98,17 +106,21 @@ const update = (req, res, next) => {
 
 const destroy = (req, res, next) => {
     let productID = req.body.productID
-    Product.findByIdAndDelete(productID)
-    .then(() => {
-        res.json({
-            message: 'Product deleted'
+    console.log(productID)
+    Product.findOneAndRemove({id: productID })
+        .then(() => {
+            res.json({
+                error: false,
+                message: 'Product deleted',
+                data : []
+    
+            })
         })
-    })
-    .catch(error => {
-        res.json({
-            message: 'error'
-        })
-    })
+        .catch(error => {
+            res.json({
+                message: 'error'
+            })
+        })    
 }
 
 

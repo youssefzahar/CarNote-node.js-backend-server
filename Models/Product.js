@@ -10,6 +10,10 @@ const productSchema = new Schema({
         type: Number,
         required:true,
     },
+    id:{
+        type: Number,
+       // default: Math.floor(Math.random() * 100)
+    },
     prix: {
         type: Number,
         required:true,

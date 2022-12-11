@@ -177,7 +177,7 @@ const add = (req, res, next) => {
        /* if(req.file){
             car.image = req.file.path
         }*/
-
+/*
         if(req.files){
             let path = ''
             req.files.forEach(function(files, index, arr) {
@@ -185,7 +185,7 @@ const add = (req, res, next) => {
             })
             path = path.substring(0, path.lastIndexOf(","))
             car.image = path
-        }
+        }*/
     
         car.save()
         .then(response => {
