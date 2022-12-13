@@ -38,7 +38,7 @@ const add = (req, res, next) => {
         let entretien = new Entretien({
             title: req.body.title,
             date: req.body.date,
-            car: req.body.car,
+       //     car: req.body.car,
             description: req.body.description,
         })
     

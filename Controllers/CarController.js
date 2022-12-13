@@ -136,18 +136,17 @@ const makePublic = (req, res, next) => {
     })
 }
 
-const showMarketplace = (req,res,next) => {
-    Car.find({attribute : 'public'} , (error, data) => {
-        if(error){
-            console.log(error)
-        }
-        else {
-            response => {
-                res.json({
-                    data
-                })
-            }
-        }
+const showMarketplace = (req, res, next) => {
+    Car.find({attribute: 'public'})
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+    .catch(error => {
+        res.json({
+            message: 'An error occured'
+        })
     })
 }
 
