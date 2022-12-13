@@ -48,7 +48,7 @@ app.listen(Port, () =>{
 
 const calculateOrderAmount = (items) => {
   const total = items.reduce((previous, current) => {
-    return previous.price + current.price
+    return previous.prix + current.prix
   })
   return total;
 };

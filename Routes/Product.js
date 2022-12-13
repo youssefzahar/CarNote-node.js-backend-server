@@ -7,7 +7,7 @@ const authenticate = require('../Middleware/Authenticate')
 
 router.get('/' ,  ProductController.index)//////
 router.get('/show',  ProductController.show)
-router.post('/add', /*upload.array('image[]')*/ upload.single('image'),  ProductController.add)///
+router.post('/add', /*upload.array('image[]') upload.single('image'),*/  ProductController.add)///
 router.post('/update',  ProductController.update)///
 router.post('/delete',  ProductController.destroy)///
 

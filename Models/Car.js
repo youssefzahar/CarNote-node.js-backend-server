@@ -38,12 +38,14 @@ const carSchema = new Schema({
         type: String,
         required:true,
     },
-    age: {
-        type: Number,
-        required:true,
-    },
     image: {
         type: String
+    },
+    kilometrage: {
+        type: Number
+    },
+    date_circulation: {
+        type: Date
     }
 }, {timestamps: true} )
 

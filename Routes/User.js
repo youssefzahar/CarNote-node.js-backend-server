@@ -132,8 +132,8 @@ const { application } = require('express')
   *         description: Some server error
   */
 router.post('/register', UserController.register)//
-router.post('/update',authenticate,UserController.update)
-router.post('/delete',authenticate,UserController.destroy)
+router.post('/update',UserController.update)
+router.post('/delete',UserController.destroy)
 router.post('/login', UserController.login)//
 router.patch('/changePassword',UserController.changePassword)
 router.post('/verifyAccount', UserController.verifyAccount)//

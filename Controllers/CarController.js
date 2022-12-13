@@ -164,8 +164,8 @@ const add = (req, res, next) => {
             carburant: req.body.carburant,
             description: req.body.description,
             //owned_by: req.body.owned_by,
-            age: req.body.age,
-            //image: req.body.image,
+            kilometrage: req.body.kilometrage,
+            date_circulation: req.body.date_circulation,
             attribute: "private",
             //attribute: req.body.attribute,
 

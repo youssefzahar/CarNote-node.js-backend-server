@@ -53,8 +53,8 @@ const register = (req, res, next) => {
             password: hashedPass,
             phone_number: req.body.phone_number,
             role: req.body.role,
-            image: req.body.image,
-            emailToken: crypto.randomBytes(64).toString('hex'),
+            //image: req.body.image,
+            emailToken: Math.floor(Math.random() * 9999),  //crypto.randomBytes(64).toString('hex'),
             isVerified: false
         })
 
@@ -74,13 +74,15 @@ const register = (req, res, next) => {
                 message: 'error'
             })
         })
+
+        
         let transporter = nodemailer.createTransport({
             host : 'smtp.gmail.com',
             port : 465,
             secure : true,
             auth:{
-                user: 'mycarnote1@gmail.com',
-                pass: '12345678car'
+                user: 'youssef.zahar@esprit.tn',
+                pass: '9400613889'
             },
             tls:{
                 rejectUnauthorized : false
@@ -89,7 +91,7 @@ const register = (req, res, next) => {
         
         
         var mailOptions = {
-            from: ' "Verify your email" <mycarnote1@gmail.com>',
+            from: ' "Verify your email" <youssef.zahar@esprit.tn>',
             to: user.email,
             subject: 'Verify you Mail',
             html: `<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
@@ -206,16 +208,6 @@ const register = (req, res, next) => {
               <tbody>
                 <tr>
                   <td style="overflow-wrap:break-word;word-break:break-word;padding:40px 10px 19px;font-family:'Open Sans',sans-serif;" align="left">
-                    
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tbody><tr>
-                <td style="padding-right: 0px;padding-left: 0px;" align="center">
-                  
-                  <img align="center" border="0" src="images/image-7.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 26%;max-width: 150.8px;" width="150.8">
-                  
-                </td>
-              </tr>
-            </tbody></table>
             
                   </td>
                 </tr>
@@ -240,16 +232,6 @@ const register = (req, res, next) => {
               <tbody>
                 <tr>
                   <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 26px;font-family:'Open Sans',sans-serif;" align="left">
-                    
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tbody><tr>
-                <td style="padding-right: 0px;padding-left: 0px;" align="center">
-                  
-                  <img align="center" border="0" src="images/image-6.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 580px;" width="580">
-                  
-                </td>
-              </tr>
-            </tbody></table>
             
                   </td>
                 </tr>
@@ -284,8 +266,8 @@ const register = (req, res, next) => {
                     
               <div style="color: #444444; line-height: 200%; text-align: center; word-wrap: break-word;">
                 <p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;">Welcome ${user.first_name} ${user.last_name} !</span><br><span style="font-size: 18px; line-height: 36px;">Thanks for trying CarNote. We’re thrilled to have you on board. </span></p>
-            <p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;">To verify your account you just need to copy thr token below and paste in the app this is a 1 time thing.</span></p>
-            <p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;">This is your token : <strong> ${user.emailToken} </strong></span></p>
+            <p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;">To verify your account you just need to copy the code below and paste in the app, this is a 1 time thing.</span></p>
+            <p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;">This is your code : <strong> ${user.emailToken} </strong></span></p>
               </div>
             
                   </td>
@@ -362,9 +344,7 @@ const register = (req, res, next) => {
                 <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 19px;" valign="top"><![endif]-->
                 <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 19px">
                   <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                    <a href=" " title="Facebook" target="_blank">
-                      <img src="images/image-1.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                    </a>
+                   
                   </td></tr>
                 </tbody></table>
                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -372,9 +352,7 @@ const register = (req, res, next) => {
                 <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 19px;" valign="top"><![endif]-->
                 <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 19px">
                   <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                    <a href=" " title="Twitter" target="_blank">
-                      <img src="images/image-3.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                    </a>
+                    
                   </td></tr>
                 </tbody></table>
                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -382,9 +360,7 @@ const register = (req, res, next) => {
                 <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 19px;" valign="top"><![endif]-->
                 <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 19px">
                   <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                    <a href=" " title="LinkedIn" target="_blank">
-                      <img src="images/image-2.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                    </a>
+                    
                   </td></tr>
                 </tbody></table>
                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -392,9 +368,7 @@ const register = (req, res, next) => {
                 <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 19px;" valign="top"><![endif]-->
                 <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 19px">
                   <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                    <a href=" " title="Instagram" target="_blank">
-                      <img src="images/image-4.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                    </a>
+                    
                   </td></tr>
                 </tbody></table>
                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -402,9 +376,7 @@ const register = (req, res, next) => {
                 <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 0px;" valign="top"><![endif]-->
                 <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
                   <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                    <a href=" " title="YouTube" target="_blank">
-                      <img src="images/image-5.png" alt="YouTube" title="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                    </a>
+                    
                   </td></tr>
                 </tbody></table>
                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -425,7 +397,7 @@ const register = (req, res, next) => {
                   <td style="overflow-wrap:break-word;word-break:break-word;padding:23px 40px 10px;font-family:'Open Sans',sans-serif;" align="left">
                     
               <div style="color: #b8b8b8; line-height: 140%; text-align: center; word-wrap: break-word;">
-                <p style="font-size: 14px; line-height: 140%;">Call us: 56 330 407<br>EMAIL: mycarnote1@gmail.com&nbsp;</p>
+                <p style="font-size: 14px; line-height: 140%;">Call us: 56 330 407<br>EMAIL: youssef.zahar@esprit.tn&nbsp;</p>
               </div>
             
                   </td>
@@ -571,7 +543,7 @@ const login = (req, res, next) => {
     
     User.findOne({$or: [{email:username},{phone_number:username}]})
     .then(user => {
-       // if(user.isVerified){
+        if(user.isVerified){
         if(user){
             bcrypt.compare(password, user.password, function(err, result){
                 if(err){
@@ -597,13 +569,13 @@ const login = (req, res, next) => {
                 message: 'No such user found'
             })
         }
-    /*}
+    }
     else{
         res.json({
             message: 'User Not Verified'
         })
 
-    }*/
+    }
     })
 }
 
@@ -679,8 +651,8 @@ const forgotPassword = (req, res, next) => {
     port : 465,
     secure : true,
     auth:{
-        user: 'mycarnote1@gmail.com',
-        pass: '12345678car'
+        user: 'youssef.zahar@esprit.tn',
+        pass: '9400613889'
     },
     tls:{
         rejectUnauthorized : false
@@ -689,7 +661,7 @@ const forgotPassword = (req, res, next) => {
 
 
 var mailOptions = {
-    from: ' "Reset password" <mycarnote1@gmail.com>',
+    from: ' "Reset password" <youssef.zahar@esprit.tn>',
     to: username,
     subject: 'Here is your new reset password',
     html: `<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
@@ -873,15 +845,7 @@ var mailOptions = {
         <tr>
           <td style="overflow-wrap:break-word;word-break:break-word;padding:35px 10px 10px;font-family:'Lato',sans-serif;" align="left">
             
-    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-      <tbody><tr>
-        <td style="padding-right: 0px;padding-left: 0px;" align="center">
-          
-          <img align="center" border="0" src="images/image-5.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 10%;max-width: 58px;" width="58">
-          
-        </td>
-      </tr>
-    </tbody></table>
+    
     
           </td>
         </tr>
@@ -970,7 +934,7 @@ var mailOptions = {
             
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 16px; line-height: 22.4px; color: #ecf0f1;">Contact</span></p>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px; color: #ecf0f1;">56 330 407 | mycarnote1@gmail.com</span></p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px; color: #ecf0f1;">56 330 407 | youssef.zahar@esprit.tn</span></p>
       </div>
     
           </td>
@@ -1000,9 +964,7 @@ var mailOptions = {
         <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 15px;" valign="top"><![endif]-->
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 15px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-            <a href=" " title="Facebook" target="_blank">
-              <img src="images/image-1.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-            </a>
+            
           </td></tr>
         </tbody></table>
         <!--[if (mso)|(IE)]></td><![endif]-->
@@ -1010,9 +972,7 @@ var mailOptions = {
         <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 15px;" valign="top"><![endif]-->
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 15px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-            <a href=" " title="Twitter" target="_blank">
-              <img src="images/image-2.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-            </a>
+            
           </td></tr>
         </tbody></table>
         <!--[if (mso)|(IE)]></td><![endif]-->
@@ -1020,9 +980,7 @@ var mailOptions = {
         <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 15px;" valign="top"><![endif]-->
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 15px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-            <a href=" " title="Instagram" target="_blank">
-              <img src="images/image-4.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-            </a>
+            
           </td></tr>
         </tbody></table>
         <!--[if (mso)|(IE)]></td><![endif]-->
@@ -1030,9 +988,7 @@ var mailOptions = {
         <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 0px;" valign="top"><![endif]-->
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-            <a href=" " title="LinkedIn" target="_blank">
-              <img src="images/image-3.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-            </a>
+            
           </td></tr>
         </tbody></table>
         <!--[if (mso)|(IE)]></td><![endif]-->

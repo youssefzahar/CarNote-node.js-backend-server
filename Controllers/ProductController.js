@@ -42,9 +42,9 @@ const add = (req, res, next) => {
             description: req.body.description,
         })
     
-        if(req.file){
+      /*  if(req.file){
             product.image = req.file.path
-        }
+        }*/
 
       /*  if(req.files){
             let path = ''
