@@ -9,6 +9,7 @@ const upload = require('../Middleware/Upload')
 router.get('/' ,  CarController.index)//////
 router.get('/show',  CarController.show)
 router.get('/showMarketplace',  CarController.showMarketplace)//////////////////////////////////////
+router.get('/userCars',  CarController.userCars)
 router.post('/add', upload.array('image[]'),  CarController.add)///
 router.post('/update',  CarController.update)///
 router.post('/delete',  CarController.destroy)///

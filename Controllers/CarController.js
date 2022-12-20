@@ -34,41 +34,6 @@ const show = (req, res, next) =>{
     })
 }
 
-
-const add1 = (req, res, next) => {
-        let car = new Car({
-            modele: req.body.modele,
-            immatricule: req.body.immatricule,
-            type: req.body.type,
-            marque: req.body.marque,
-            puissance: req.body.puissance,
-            carburant: req.body.carburant,
-            description: req.body.description,
-            owned_by: req.body.owned_by,
-            age: req.body.age,
-            image: req.body.image,
-            attribute: "private",
-        })
-    
-       /* if(req.file){
-            car.image = req.file.path
-        }*/
-    
-        car.save()
-        .then(response => {
-            res.json({
-                message: 'car added'
-            })
-        })
-        .catch(error => {
-            res.json({
-                message: 'error'
-            })
-        })
-}
-
-
-
 const update = (req, res, next) => {
     let carID = req.body.carID
     console.log(carID)
@@ -151,6 +116,22 @@ const showMarketplace = (req, res, next) => {
 }
 
 
+const userCars = (req, res, next) => {
+    let carID = req.body.carID
+    console.log(carID)
+    Car.find({owned_by: carID})
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+    .catch(error => {
+        res.json({
+            message: 'An error occured'
+        })
+    })
+}
+
 
 const add = (req, res, next) => {
 
@@ -162,11 +143,9 @@ const add = (req, res, next) => {
             puissance: req.body.puissance,
             carburant: req.body.carburant,
             description: req.body.description,
-            //owned_by: req.body.owned_by,
-            kilometrage: req.body.kilometrage,
-            date_circulation: req.body.date_circulation,
+            owned_by: req.body.owned_by,
+           // date_circulation: req.body.date_circulation,
             attribute: "private",
-            //attribute: req.body.attribute,
 
         })
 
@@ -174,14 +153,14 @@ const add = (req, res, next) => {
             car.image = req.file.path
         }*/
 
-        if(req.files){
+       /* if(req.files){
             let path = ''
             req.files.forEach(function(files, index, arr) {
                 path = path + files.path + ','
             })
             path = path.substring(0, path.lastIndexOf(","))
             car.image = path
-        }
+        }*/
     
         car.save()
         .then(response => {
@@ -197,5 +176,5 @@ const add = (req, res, next) => {
 }
 
 module.exports = {
-    index,show,add,update,destroy,showMarketplace,makePublic
+    index,show,add,update,destroy,showMarketplace,makePublic,userCars
 }

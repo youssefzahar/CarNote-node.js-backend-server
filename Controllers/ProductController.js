@@ -39,6 +39,7 @@ const add = (req, res, next) => {
             title: req.body.title,
             stock: req.body.stock,
             prix: req.body.prix,
+            owned_by: req.body.owned_by,
             description: req.body.description,
         })
     
@@ -112,10 +113,24 @@ const destroy = (req, res, next) => {
 }
 
 
-
+const usersProducts = (req, res, next) => {
+    let productID = req.body.productID
+    console.log(productID)
+    Product.find({owned_by: productID})
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+    .catch(error => {
+        res.json({
+            message: 'An error occured'
+        })
+    })
+}
 
 
 
 module.exports = {
-    index,show,add,update,destroy
+    index,show,add,update,destroy,usersProducts
 }

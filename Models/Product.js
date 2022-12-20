@@ -19,8 +19,8 @@ const productSchema = new Schema({
         required:true,
     },
     owned_by: {
-        type: String,
-        default:"youssef.zahar@esprit.tn"
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     image: {
         type: String

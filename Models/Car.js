@@ -31,8 +31,8 @@ const carSchema = new Schema({
         required:true,
     },
     owned_by: {
-        type: String,
-        default:"youssef.zahar@esprit.tn"
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     attribute: {
         type: String,
@@ -40,9 +40,6 @@ const carSchema = new Schema({
     },
     image: {
         type: String
-    },
-    kilometrage: {
-        type: Number
     },
     date_circulation: {
         type: Date

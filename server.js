@@ -40,23 +40,23 @@ app.use(bodyparser.json())
 app.use('/uploads',express.static('uploads'))
 const Port = process.env.Port || 3000
 
-app.listen(Port, () =>{
+/*app.listen(Port, () =>{
     console.log(`Server is running on port ${Port}`)
-})
+})*/
 
 ///////////////////////////////////////////////////////
 
-const calculateOrderAmount = (items) => {
-  const total = items.reduce((previous, current) => {
+const calculateOrderAmount = (ListProducts) => {
+  const total = ListProducts.reduce((previous, current) => {
     return previous.prix + current.prix
   })
-  return total;
+  return total * 100;
 };
 
 app.post("/create-payment-intent", async (req, res) => {
-  const  items  = req.body;
+  const  ListProducts  = req.body;
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
+    amount: calculateOrderAmount(ListProducts),
     currency: "eur",
     automatic_payment_methods: {
       enabled: true,
@@ -69,6 +69,17 @@ app.post("/create-payment-intent", async (req, res) => {
 });
 
 /////////////////////////////////////////////////////
+
+
+
+
+
+
+app.listen(Port, () =>{
+  console.log(`Server is running on port ${Port}`)
+})
+
+
 
 const options = {
     definition: {

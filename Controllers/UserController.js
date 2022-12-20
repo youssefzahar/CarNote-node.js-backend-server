@@ -55,7 +55,8 @@ const register = (req, res, next) => {
             role: req.body.role,
             //image: req.body.image,
             emailToken: Math.floor(Math.random() * 9999),  //crypto.randomBytes(64).toString('hex'),
-            isVerified: false
+            isVerified: false,
+            image: req.body.image
         })
 
     
