@@ -131,12 +131,12 @@ const { application } = require('express')
   *       500:
   *         description: Some server error
   */
-router.post('/register', UserController.register)//
+router.post('/register', UserController.register)////////////////
 router.post('/update',UserController.update)
 router.post('/delete',UserController.destroy)
-router.post('/login', UserController.login)//
+router.post('/login', UserController.login)//////////////////
 router.patch('/changePassword',UserController.changePassword)
-router.post('/verifyAccount', UserController.verifyAccount)//
-router.post('/forgotPassword', UserController.forgotPassword)//
+router.post('/verifyAccount', UserController.verifyAccount)
+router.post('/forgotPassword', UserController.forgotPassword)
 
 module.exports = router

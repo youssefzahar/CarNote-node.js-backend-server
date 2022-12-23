@@ -1,3 +1,4 @@
+const { findByIdAndDelete } = require('../Models/Product')
 const Product = require('../Models/Product')
 
 
@@ -99,6 +100,7 @@ const update = (req, res, next) => {
 
 const destroy = (req, res, next) => {
     let productID = req.body.productID
+    console.log(productID)
     Product.findByIdAndDelete(productID)
     .then(() => {
         res.json({
@@ -114,7 +116,7 @@ const destroy = (req, res, next) => {
 
 
 const usersProducts = (req, res, next) => {
-    let productID = req.body.productID
+    let productID = req.params.productID
     console.log(productID)
     Product.find({owned_by: productID})
     .then(response => {

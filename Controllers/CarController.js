@@ -117,7 +117,7 @@ const showMarketplace = (req, res, next) => {
 
 
 const userCars = (req, res, next) => {
-    let carID = req.body.carID
+    let carID = req.params.carID
     console.log(carID)
     Car.find({owned_by: carID})
     .then(response => {

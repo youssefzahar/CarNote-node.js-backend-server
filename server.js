@@ -9,14 +9,10 @@ const dotenv = require('dotenv')
 const CarRoute = require('./Routes/Car')
 const ProductRoute = require('./Routes/Product')
 const EntretienRoute = require('./Routes/Entretien')
-//const PaymentRoute = require('./Routes/Payment')
 
 ///////
 // This is your test secret API key.
 const stripe = require("stripe")('sk_test_51MDmEvEbHfjP9Lzb79VCDTAHz5MFshTKhUFv7dcg7VwgnqEk7ko05V12CRemSDA3huKwtFzOhvcsz7yIqjVgZ8sI00rIde2zOH');
-
-//app.use(express.static("public"));
-//app.use(express.json());
 
 //////
 
@@ -39,10 +35,6 @@ app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
 app.use('/uploads',express.static('uploads'))
 const Port = process.env.Port || 3000
-
-/*app.listen(Port, () =>{
-    console.log(`Server is running on port ${Port}`)
-})*/
 
 ///////////////////////////////////////////////////////
 
@@ -69,11 +61,6 @@ app.post("/create-payment-intent", async (req, res) => {
 });
 
 /////////////////////////////////////////////////////
-
-
-
-
-
 
 app.listen(Port, () =>{
   console.log(`Server is running on port ${Port}`)
@@ -113,7 +100,6 @@ const options = {
   app.use('/api/car', CarRoute)
   app.use('/api/product', ProductRoute)
   app.use('/api/entretien', EntretienRoute)
-  //app.use('/api/payment', PaymentRoute)
 
 
 

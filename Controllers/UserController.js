@@ -542,7 +542,7 @@ const login = (req, res, next) => {
     var username = req.body.username
     var password = req.body.password
     
-    User.findOne({$or: [{email:username},{phone_number:username}]})
+    User.findOne({$or: [{email:username.toLowerCase()},{phone_number:username}]})
     .then(user => {
         if(user.isVerified){
         if(user){
@@ -582,34 +582,44 @@ const login = (req, res, next) => {
 
 
 const changePassword = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10, function(err, hashedPass) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
+  var userID = req.body.userID
+  const newPassword = req.body.newPassword
+  const confirmedpassword = req.body.confirmedpassword
+  console.log(userID)
+  console.log(newPassword)
+  console.log(confirmedpassword)
 
-        let userID = req.body.email
-        let updatedData = {
-            password: hashedPass
-        }
-        var username = req.body.username
-        
-        User.findOneAndUpdate({$or: [{email:username},{phone_number:username}]}, {$set: updatedData})
-        .then(response => {
-            res.json({
-                message: 'password updated'
-            })
-        })
-        .catch(error => {
-            res.json({
-                message: 'error'
-            })
-        })
+  if(newPassword == confirmedpassword ) {
+  bcrypt.hash(newPassword, 10, function(err, hashedPass) {
+      if(err) {
+          res.json({
+              error : err
+          })
+      }
+  let updatedData = {
+      password: hashedPass
+  }
 
-    })
-    
-    
+  User.findByIdAndUpdate(userID, {$set: updatedData})
+  .then(() => {
+      res.json({
+          message: 'password reset'
+      })
+  })
+  .catch(error => {
+      res.json({
+          message: 'error'
+      })
+  })
+})
+}
+else
+{
+  res.json({
+    message: 'error'
+})
+  console.log("not confirmed")
+}
 }
 
 
