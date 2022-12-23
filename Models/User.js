@@ -9,13 +9,12 @@ const userSchema = new Schema({
     last_name: {
         type: String
     },
-    cin: {
-        type: Number,
-        required:true,
-        unique: true,
-        minlenght : 8
-    },
     email: {
+        type: String,
+        required:true,
+        unique: true
+    },
+    user_name: {
         type: String,
         required:true,
         unique: true

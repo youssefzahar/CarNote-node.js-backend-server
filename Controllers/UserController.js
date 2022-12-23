@@ -48,7 +48,7 @@ const register = (req, res, next) => {
         let user = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
-            cin: req.body.cin,
+            user_name: req.body.user_name,
             email: req.body.email,
             password: hashedPass,
             phone_number: req.body.phone_number,
@@ -501,8 +501,7 @@ const update = (req, res, next) => {
     let userID = req.body.userID
     console.log(userID)
     let updatedData = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+        email: req.body.email,
         phone_number: req.body.phone_number,
         //image: req.body.image
     }
@@ -542,7 +541,7 @@ const login = (req, res, next) => {
     var username = req.body.username
     var password = req.body.password
     
-    User.findOne({$or: [{email:username.toLowerCase()},{phone_number:username}]})
+    User.findOne({$or: [{user_name:username}]})
     .then(user => {
         if(user.isVerified){
         if(user){
