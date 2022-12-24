@@ -4,15 +4,19 @@ const Schema = mongoose.Schema
 const entretienSchema = new Schema({
     car: {
         type: String,
-        required:true,
+       // required:true,
     },
     date: {
         type: Date,
-        required:true,
+       // required:true,
     },
     title: {
         type: String,
         required:true,
+    },
+    owned_by: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     description: {
         type: String,

@@ -5,7 +5,8 @@ const EntretienController = require('../Controllers/EntretienController')
 
 router.get('/' ,  EntretienController.index)
 router.get('/show',  EntretienController.show)
-router.post('/add', EntretienController.add)
+router.get('/usersEntretien/:userID',  EntretienController.usersEntretien)
+router.post('/add', EntretienController.add)///////////////////////
 router.post('/delete',  EntretienController.destroy)
 
 

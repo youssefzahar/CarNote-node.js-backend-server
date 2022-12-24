@@ -40,6 +40,7 @@ const add = (req, res, next) => {
             date: req.body.date,
        //     car: req.body.car,
             description: req.body.description,
+            owned_by: req.body.owned_by,
         })
     
         entretien.save()
@@ -72,7 +73,23 @@ const destroy = (req, res, next) => {
     })
 }
 
+const usersEntretien = (req, res, next) => {
+    let userID = req.params.userID
+    console.log(userID)
+    Entretien.find({owned_by: userID})
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+    .catch(error => {
+        res.json({
+            message: 'An error occured'
+        })
+    })
+}
+
 
 module.exports = {
-    index,show,add,destroy
+    index,show,add,destroy,usersEntretien
 }
