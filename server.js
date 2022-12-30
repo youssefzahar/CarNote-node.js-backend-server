@@ -9,6 +9,7 @@ const dotenv = require('dotenv')
 const CarRoute = require('./Routes/Car')
 const ProductRoute = require('./Routes/Product')
 const EntretienRoute = require('./Routes/Entretien')
+const FavorieRoute = require('./Routes/Favorie')
 
 ///////
 // This is your test secret API key.
@@ -100,6 +101,7 @@ const options = {
   app.use('/api/car', CarRoute)
   app.use('/api/product', ProductRoute)
   app.use('/api/entretien', EntretienRoute)
+  app.use('/api/favorie', FavorieRoute)
 
 
 

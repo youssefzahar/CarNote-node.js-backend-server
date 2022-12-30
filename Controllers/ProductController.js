@@ -44,18 +44,9 @@ const add = (req, res, next) => {
             description: req.body.description,
         })
     
-      /*  if(req.file){
-            product.image = req.file.path
-        }*/
-
-      /*  if(req.files){
-            let path = ''
-            req.files.forEach(function(files, index, arr) {
-                path = path + files.path + ','
-            })
-            path = path.substring(0, path.lastIndexOf(","))
-            product.image = path
-        }*/
+        if(req.file){
+            product.image = req.file.filename
+        }
     
         product.save()
         .then(response => {

@@ -38,45 +38,41 @@ const show = (req, res, next) =>{
 
 const register = (req, res, next) => {
 
-    bcrypt.hash(req.body.password, 10, function(err, hashedPass) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
-
-        let user = new User({
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            user_name: req.body.user_name,
-            email: req.body.email,
-            password: hashedPass,
-            phone_number: req.body.phone_number,
-            role: req.body.role,
-            //image: req.body.image,
-            emailToken: Math.floor(Math.random() * 9999),  //crypto.randomBytes(64).toString('hex'),
-            isVerified: false,
-            image: req.body.image
+  bcrypt.hash(req.body.password, 10, function(err, hashedPass) {
+    if(err) {
+        res.json({
+            error : err
         })
+    }
 
-    
-        /*if(req.file){
-            user.image = req.file.path
-        }*/
-    
-        user.save()
-        .then(response => {
-            res.json({
-                message: 'user added'
-            })
-        })
-        .catch(error => {
-            res.json({
-                message: 'error'
-            })
-        })
+    let user = new User({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        user_name: req.body.user_name,
+        email: req.body.email,
+        password: hashedPass,
+        phone_number: req.body.phone_number,
+        role: req.body.role,
+        emailToken: Math.floor(Math.random() * 99999), // crypto.randomBytes(64).toString('hex'),
+        isVerified: false,
+    })
 
-        
+
+   /* if(req.file){
+        user.image = req.file.path
+    }*/
+
+    user.save()
+    .then(response => {
+        res.json({
+            message: 'user added'
+        })
+    })
+    .catch(error => {
+        res.json({
+            message: 'error'
+        })
+    })  
         let transporter = nodemailer.createTransport({
             host : 'smtp.gmail.com',
             port : 465,
@@ -469,6 +465,16 @@ const register = (req, res, next) => {
                 console.log(error)
             }else{
                 console.log("verification")
+              /*  console.log(user.email)
+                console.log(user.first_name)
+                console.log(user.last_name)
+                console.log(user.user_name)
+                console.log(user.phone_number)
+                console.log(user.password)
+                console.log(user.isVerified)
+                console.log(user.emailToken)
+                console.log(user.image)
+                console.log(user.role)*/
             }
         })
 
@@ -477,13 +483,12 @@ const register = (req, res, next) => {
 }
 
 const verifyAccount = (req, res, next) => {
-    let token = req.body.emailToken
+    let code = req.body.code
     let updatedData = {
-        emailToken: null,
         isVerified: true        
     }
 
-    User.findOneAndUpdate(token, {$set: updatedData})
+    User.findOneAndUpdate({emailToken : code}, {$set: updatedData})
     .then(() => {
         res.json({
             message: 'user verified'
@@ -630,7 +635,7 @@ const forgotPassword = (req, res, next) => {
 
     //let username = req.body.email
     console.log(username)
-    const resetPassword = Math.random().toString(36).substring(1,11);
+    const resetPassword = Math.random().toString(36).substring(1,9);
     console.log(resetPassword)
     bcrypt.hash(resetPassword, 10, function(err, hashedPass) {
         if(err) {
@@ -642,7 +647,7 @@ const forgotPassword = (req, res, next) => {
         password: hashedPass
     }
 
-    User.findOneAndUpdate(username, {$set: updatedData})
+    User.findOneAndUpdate({email : username}, {$set: updatedData})
     .then(() => {
         res.json({
             message: 'password reset'

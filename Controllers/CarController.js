@@ -144,23 +144,14 @@ const add = (req, res, next) => {
             carburant: req.body.carburant,
             description: req.body.description,
             owned_by: req.body.owned_by,
-           // date_circulation: req.body.date_circulation,
+            date_circulation: req.body.date_circulation,
             attribute: "private",
 
         })
 
-       /* if(req.file){
-            car.image = req.file.path
-        }*/
-
-       /* if(req.files){
-            let path = ''
-            req.files.forEach(function(files, index, arr) {
-                path = path + files.path + ','
-            })
-            path = path.substring(0, path.lastIndexOf(","))
-            car.image = path
-        }*/
+        if(req.file){
+            car.image = req.file.filename
+        }
     
         car.save()
         .then(response => {

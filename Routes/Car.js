@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const CarController = require('../Controllers/CarController')
-//const upload = require('../Middleware/Upload')
 const authenticate = require('../Middleware/Authenticate')
 const upload = require('../Middleware/Upload')
 
