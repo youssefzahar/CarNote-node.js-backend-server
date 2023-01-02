@@ -1,0 +1,185 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Library API",
+        "version": "1.0.0",
+        "description": "A simple Express Library API",
+        "termsOfService": "http://example.com/terms/",
+        "contact": {
+          "name": "API Support",
+          "url": "http://www.exmaple.com/support"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "User",
+            "description": "User Api"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/api/user/": {
+            "get":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+
+
+
+        "definitions":{
+            "id":{
+                "properties":{
+                    "uuid":{
+                        "type":"string"
+                    }
+                }
+            },
+            "User":{
+                "type": "object",
+                "properties": {
+                    "first_name":{
+                        "type": "string"
+                    },
+                    "last_name":{
+                        "type": "string"
+                    }, 
+                    "email":{
+                        "type": "string"
+                    },  
+                    "user_name":{
+                        "type": "string"
+                    }, 
+                    "role":{
+                        "type": "string"
+                    },
+                    "image":{
+                        "type": "string"
+                    },
+                    "phone_number":{
+                        "type": "string"
+                    },
+                    "emailToken":{
+                        "type": "string"
+                    },
+                    "isVerified":{
+                        "type": "boolean"
+                    }
+                    
+                }
+            },
+            "Entretien":{
+                "type": "object",
+                "properties": {
+                    "date":{
+                        "type": "Date"
+                    },
+                    "title":{
+                        "type": "string"
+                    },
+                    "owned_by":{
+                        "$ref": "#/definitions/User"
+                    },
+                    "description":{
+                        "type": "string"
+                    }
+                    
+                }
+            },
+            "Car":{
+                "type": "object",
+                "properties": {
+                    "modele":{
+                        "type": "string"
+                    },
+                    "type":{
+                        "type": "string"
+                    }, 
+                    "marque":{
+                        "type": "string"
+                    },  
+                    "immatricule":{
+                        "type": "string"
+                    }, 
+                    "puissance":{
+                        "type": "number"
+                    },
+                    "carburant":{
+                        "type": "string"
+                    },
+                    "description":{
+                        "type": "string"
+                    },
+                    "owned_by":{
+                        "$ref": "#/definitions/User"
+                    },
+                    "attribute":{
+                        "type": "string"
+                    },
+                    "image":{
+                        "type": "string"
+                    }
+                    
+                }
+            },
+            "Favorie":{
+                "type": "object",
+                "properties": {
+                    "user":{
+                        "$ref": "#/definitions/User"
+                    },
+                    "car":{
+                        "$ref": "#/definitions/Car"
+                    }                    
+                }
+            },
+            "Product":{
+                "type": "object",
+                "properties": {
+                    "title":{
+                        "type": "string"
+                    },
+                    "stock":{
+                        "type": "number"
+                    }, 
+                    "prix":{
+                        "type": "number"
+                    },
+                    "description":{
+                        "type": "string"
+                    },
+                    "owned_by":{
+                        "$ref": "#/definitions/User"
+                    },
+                    "image":{
+                        "type": "string"
+                    }
+                    
+                }
+            }
+        }
+      }
