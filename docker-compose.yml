@@ -1,24 +1,20 @@
-version: '3.9'
-
+version: "3"
 services:
-
-  mongo_db:
-    container_name: db_container
-    image: mongo:latest
-    restart: always
-    volumes:
-      - mongo_db:/data/db
-
   api:
+    image: ilyesblg/fantasy_server
     build: .
+    environment: 
+      - NODE_ENV = production
+      - DB_URL = mongodb://mongo
+    ports: 
+      - "3000:3000"
+    networks:
+      - app_7
+  mongo:
+    image: mongo:6
     ports:
-      - 4000:3000
-    environment:
-      PORT: 3000
-      MONGODB_URI: mongodb://mongo_db:27017
-      DB_NAME: CarNote
-    depends_on:
-      - mongo_db
-    
-volumes:
-  mongo_db: {}
+      - '5001:27017'   
+    volumes:
+      - ./database:/data/db
+    networks: 
+      - app_7

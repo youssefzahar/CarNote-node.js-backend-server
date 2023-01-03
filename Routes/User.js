@@ -7,7 +7,7 @@ const upload = require('../Middleware/Upload')
 const authenticate = require('../Middleware/Authenticate')
 
 
-router.get('/' , UserController.index)
+router.get('/' , UserController.index)////////
 router.get('/show',  UserController.show)
 router.post('/register', UserController.register)//////////////////////
 router.post('/update',UserController.update)///////////////////////////

@@ -10,6 +10,7 @@ const CarRoute = require('./Routes/Car')
 const ProductRoute = require('./Routes/Product')
 const EntretienRoute = require('./Routes/Entretien')
 const FavorieRoute = require('./Routes/Favorie')
+const swaggerDocument = require('./swagger.json')
 
 ///////
 // This is your test secret API key.
@@ -17,7 +18,7 @@ const stripe = require("stripe")('sk_test_51MDmEvEbHfjP9Lzb79VCDTAHz5MFshTKhUFv7
 
 //////
 
-mongoose.connect('mongodb://localhost:27017/CarNote', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://127.0.0.1:27017/CarNote', {useNewUrlParser: true, useUnifiedTopology: true})
 
 const db = mongoose.connection
 
@@ -67,7 +68,7 @@ app.listen(Port, () =>{
   console.log(`Server is running on port ${Port}`)
 })
 
-
+/*
 
 const options = {
     definition: {
@@ -93,10 +94,10 @@ const options = {
     },
     apis: ["./Routes/*.js"],
   };
-  
-  const specs = swaggerJSDoc(options);
+  */
+  //const specs = swaggerJSDoc(options);
 
-  app.use('/swagger/api', swaggerUi.serve, swaggerUi.setup(specs))
+  app.use('/swagger/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   app.use('/api/user', UserRoute)
   app.use('/api/car', CarRoute)
   app.use('/api/product', ProductRoute)
