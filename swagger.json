@@ -1,0 +1,713 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Library API",
+        "version": "1.0.0",
+        "description": "A simple Express Library API",
+        "termsOfService": "http://example.com/terms/",
+        "contact": {
+          "name": "API Support",
+          "url": "http://www.exmaple.com/support"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "User",
+            "description": "User Api"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/api/user/": {
+            "get":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/show": {
+            "parameters": [{
+                "name": "in",
+                "in": "path",
+                "required": true,
+                "description": "user id",
+                "type": "string"
+            }],
+            "get":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user by id",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/register": {
+            "post":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "register user",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/update": {
+            "post":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "update user",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/delete": {
+            "post":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "delete user",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/login": {
+            "post":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "login user",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/changePassword": {
+            "patch":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "change password user",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/verifyAccount": {
+            "post":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "change password user",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/forgotPassword": {
+            "post":{
+                "tags": [
+                    "User"
+                ],
+                "summary": "change password user",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/car/add": {
+            "post":{
+                "tags": [
+                    "Car"
+                ],
+                "summary": "add car",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Car"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/car/delete": {
+            "post":{
+                "tags": [
+                    "Car"
+                ],
+                "summary": "delete car",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Car"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/car/makePublic": {
+            "post":{
+                "tags": [
+                    "Car"
+                ],
+                "summary": "make public car",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Car"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/car/": {
+            "get":{
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Get all cars",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/car/show": {
+            "parameters": [{
+                "name": "in",
+                "in": "path",
+                "required": true,
+                "description": "car id",
+                "type": "string"
+            }],
+            "get":{
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Get car by id",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/car/showMarketplace": {
+            "get":{
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Get all public cars",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/userCars/:id": {
+            "parameters": [{
+                "name": "in",
+                "in": "path",
+                "required": true,
+                "description": "user id",
+                "type": "string"
+            }],
+            "get":{
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Get car by id",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/entretien/": {
+            "get":{
+                "tags": [
+                    "Entretien"
+                ],
+                "summary": "Get all entretiens",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Entretien"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/entretien/delete": {
+            "post":{
+                "tags": [
+                    "Entretien"
+                ],
+                "summary": "delete entretien",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Entretien"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/entretien/add": {
+            "post":{
+                "tags": [
+                    "Entretien"
+                ],
+                "summary": "delete entretien",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Entretien"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product/add": {
+            "post":{
+                "tags": [
+                    "Product"
+                ],
+                "summary": "add product",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Product"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product/update": {
+            "post":{
+                "tags": [
+                    "Product"
+                ],
+                "summary": "update product",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Product"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product/delete": {
+            "delete":{
+                "tags": [
+                    "Product"
+                ],
+                "summary": "delete product",
+                "parameters": [{
+                    "in":"body",
+                    "name": "body",
+                    "description": "description",
+                    "schema": {
+                        "$ref": "#/definitions/Product"
+                    }
+                }],
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product/": {
+            "get":{
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get all products",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+
+
+
+
+        "definitions":{
+            "id":{
+                "properties":{
+                    "uuid":{
+                        "type":"string"
+                    }
+                }
+            },
+            "User":{
+                "type": "object",
+                "properties": {
+                    "first_name":{
+                        "type": "string"
+                    },
+                    "last_name":{
+                        "type": "string"
+                    }, 
+                    "email":{
+                        "type": "string"
+                    },  
+                    "user_name":{
+                        "type": "string"
+                    }, 
+                    "role":{
+                        "type": "string"
+                    },
+                    "password":{
+                        "type": "string"
+                    },
+                    "phone_number":{
+                        "type": "string"
+                    },
+                    "emailToken":{
+                        "type": "string"
+                    },
+                    "isVerified":{
+                        "type": "boolean"
+                    }
+                    
+                }
+            },
+            "Entretien":{
+                "type": "object",
+                "properties": {
+                    "date":{
+                        "type": "date"
+                    },
+                    "title":{
+                        "type": "string"
+                    },
+                    "owned_by":{
+                        "$ref": "User"
+                    },
+                    "description":{
+                        "type": "string"
+                    }
+                    
+                }
+            },
+            "Car":{
+                "type": "object",
+                "properties": {
+                    "modele":{
+                        "type": "string"
+                    },
+                    "type":{
+                        "type": "string"
+                    }, 
+                    "marque":{
+                        "type": "string"
+                    },  
+                    "immatricule":{
+                        "type": "string"
+                    }, 
+                    "puissance":{
+                        "type": "number"
+                    },
+                    "carburant":{
+                        "type": "string"
+                    },
+                    "description":{
+                        "type": "string"
+                    },
+                    "owned_by":{
+                        "$ref": "User"
+                    },
+                    "attribute":{
+                        "type": "string"
+                    },
+                    "image":{
+                        "type": "string"
+                    }
+                    
+                }
+            },
+            "Product":{
+                "type": "object",
+                "properties": {
+                    "title":{
+                        "type": "string"
+                    },
+                    "stock":{
+                        "type": "number"
+                    }, 
+                    "prix":{
+                        "type": "number"
+                    },
+                    "description":{
+                        "type": "string"
+                    },
+                    "owned_by":{
+                        "$ref": "User"
+                    },
+                    "image":{
+                        "type": "string"
+                    }
+                    
+                }
+            }
+        }
+      }
